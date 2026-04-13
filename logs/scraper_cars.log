@@ -1,0 +1,32 @@
+2026-04-12 12:38:29,105 [INFO] ==================================================
+2026-04-12 12:38:29,105 [INFO] EPA Fuel Economy — fueleconomy.gov
+2026-04-12 12:38:29,105 [INFO] ==================================================
+2026-04-12 12:38:29,105 [INFO] Downloading vehicles.csv.zip ...
+2026-04-12 12:40:48,720 [INFO] Downloaded 2.2 MB
+2026-04-12 12:40:49,135 [INFO] Raw shape: (49846, 84)
+2026-04-12 12:40:49,283 [INFO] EPA complete
+2026-04-12 12:40:49,283 [INFO]   Rows       : 18,392
+2026-04-12 12:40:49,284 [INFO]   Makes      : 64
+2026-04-12 12:40:49,284 [INFO]   Year range : 2010–2026
+2026-04-12 12:40:49,284 [INFO]   Saved to   : ./data/processed/cars_epa.csv
+2026-04-12 12:40:51,293 [INFO] ==================================================
+2026-04-12 12:40:51,294 [INFO] Drag Coefficient — Wikipedia scrape
+2026-04-12 12:40:51,294 [INFO] ==================================================
+2026-04-12 12:40:51,294 [INFO] Fetching https://en.wikipedia.org/wiki/Automobile_drag_coefficient
+2026-04-12 12:40:53,719 [INFO] Found 4 wikitables
+2026-04-12 12:40:53,725 [INFO]   Table 0: 14 rows, cols: ['Calendar year', 'Automobile', 'Cd', 'source_table']
+2026-04-12 12:40:53,727 [INFO]   Table 1: 9 rows, cols: ['Calendar year', 'Automobile', 'Cd', 'source_table']
+2026-04-12 12:40:53,729 [INFO]   Table 2: 9 rows, cols: ['CdA sqft', 'CdA m2', 'Automobile model', 'source_table']
+2026-04-12 12:40:53,730 [INFO]   Table 3: 2 rows, cols: ['CdA sqft', 'CdA m2', 'Automobile model', 'source_table']
+2026-04-12 12:48:13,498 [INFO] ==================================================
+2026-04-12 12:48:13,498 [INFO] Merging EPA + Cd into unified cars dataset
+2026-04-12 12:48:13,498 [INFO] ==================================================
+2026-04-12 12:48:13,498 [ERROR] Cd file missing — run pull_cd() first
+2026-04-12 12:48:55,136 [INFO] ==================================================
+2026-04-12 12:48:55,136 [INFO] Merging EPA + Cd into unified cars dataset
+2026-04-12 12:48:55,136 [INFO] ==================================================
+2026-04-12 12:48:55,136 [ERROR] Cd file missing — run pull_cd() first
+2026-04-12 12:57:10,431 [INFO] ==================================================
+2026-04-12 12:57:10,432 [INFO] Merging EPA + Cd into unified cars dataset
+2026-04-12 12:57:10,432 [INFO] ==================================================
+2026-04-12 12:57:10,463 [WARNING] make_model_key missing — skipping merge
