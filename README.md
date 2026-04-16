@@ -204,4 +204,4 @@ MIT — free to use, just credit the repo.
 ## Author
 
 **Shiv** — B.Tech CSE (Data Science), Chaudhary Devi Lal University, Sirsa  
-[GitHub](https://github.com/YOUR_USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR_PROFILE)
+· [LinkedIn](https://www.linkedin.com/in/shivmahlan/)
