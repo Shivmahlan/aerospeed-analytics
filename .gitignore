@@ -1,2 +1,7 @@
-data/cache/
-*.sqlite
+__pycache__/
+*.pyc
+.env
+*.cache
+/cache/
+.DS_Store
+*.csv

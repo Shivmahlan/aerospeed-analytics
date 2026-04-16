@@ -1,0 +1,13 @@
+{
+  "id": "shivmahlan/aerospeed-eda-f1-telemetry-analysis",
+  "title": "Aerospeed Eda F1 Telemetry Analysis",
+  "code_file": "01_eda_f1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["shivmahlan/aerospeed-analytics"],
+  "competition_sources": [],
+  "kernel_sources": []
+}
