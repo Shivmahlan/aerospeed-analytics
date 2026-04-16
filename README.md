@@ -191,7 +191,7 @@ npm run dev
 ## Dataset on Kaggle
 
 The cleaned dataset (F1 race laps 2022–2024 + EPA fuel economy) is published on Kaggle:
-👉 [AeroSpeed Analytics Dataset]
+👉 https://www.kaggle.com/datasets/shivmahlan/aerospeed-analytics
 
 ---
 
