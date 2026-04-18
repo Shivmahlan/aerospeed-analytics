@@ -2,9 +2,7 @@ streamlit
 fastf1
 pandas
 numpy
-matplotlib
-seaborn
 plotly
 scikit-learn
-xgboost
+joblib
 requests
