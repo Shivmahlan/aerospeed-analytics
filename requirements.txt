@@ -6,3 +6,6 @@ plotly
 scikit-learn
 joblib
 requests
+xgboost
+lightgbm
+catboost
