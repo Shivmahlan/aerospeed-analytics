@@ -140,7 +140,6 @@ def result_card(title, value, subtitle, color):
 # ── Load data ─────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    # Bypassing hard crash if directories aren't set up locally yet
     try:
         base = os.path.dirname(os.path.abspath(__file__))
         data = os.path.join(base, '..', 'data', 'processed')
@@ -148,7 +147,6 @@ def load_data():
         qual = pd.read_csv(os.path.join(data, 'qual_ml_ready.csv'))
         cars = pd.read_csv(os.path.join(data, 'cars_ml_ready.csv'))
     except FileNotFoundError:
-        # Fallback empty dataframes for immediate UI rendering
         laps = pd.DataFrame(columns=['GP', 'Team', 'Compound', 'LapTime', 'Year', 'SpeedST', 'TyreLife'])
         qual = pd.DataFrame(columns=['GP', 'Year', 'BestQual', 'GapToPole', 'TeamAvgQual', 'RecentForm', 'Abbreviation'])
         cars = pd.DataFrame(columns=['make', 'model', 'year', 'highway_mpg', 'engine_displacement_l', 'cylinders'])
@@ -159,10 +157,10 @@ def load_models():
     class DummyPredictor:
         def predict(self, x): return [32.5]
         def predict_proba(self, x): return [[0.2, 0.8]]
-        
+
     try:
-        base   = os.path.dirname(os.path.abspath(__file__))
-        models = os.path.join(base, '..', 'models')
+        base      = os.path.dirname(os.path.abspath(__file__))
+        models    = os.path.join(base, '..', 'models')
         mpg_model = joblib.load(os.path.join(models, 'mpg_predictor.pkl'))
         lap_model = joblib.load(os.path.join(models, 'laptime_predictor.pkl'))
         win_model = joblib.load(os.path.join(models, 'win_probability.pkl'))
@@ -193,7 +191,7 @@ TEAM_COLORS = {
 # ── Sidebar ───────────────────────────────────────────────────
 st.sidebar.markdown("""
 <div style="text-align:center; padding: 1rem 0;">
-    <h2 style="color:#e10600; font-size:1.4rem;">AeroSpeed</h2>
+    <h2 style="color:#e10600; font-size:1.4rem;">🏎️ AeroSpeed</h2>
     <p style="color:#aaa; font-size:0.85rem;">Analytics Dashboard</p>
 </div>
 """, unsafe_allow_html=True)
@@ -209,7 +207,7 @@ page = st.sidebar.radio(
 # ═══════════════════════════════════════════════════════════════
 if page == "Overview":
     hero_section(
-        "AeroSpeed Analytics",
+        "🏎️ AeroSpeed Analytics",
         "F1 Telemetry + Road Car Aerodynamics — 2022 to 2024"
     )
 
@@ -251,7 +249,7 @@ if page == "Overview":
                                font_color='white', height=500)
             st.plotly_chart(fig2, use_container_width=True)
         else:
-             st.info("Awaiting dataset connection.")
+            st.info("Awaiting dataset connection.")
         glass_card_end()
 
 # ═══════════════════════════════════════════════════════════════
@@ -339,24 +337,22 @@ elif page == "Circuit Insights":
         glass_card_end()
 
 # ═══════════════════════════════════════════════════════════════
-# PAGE 4 — 3D TELEMETRY (NEW FEATURE)
+# PAGE 4 — 3D TELEMETRY
 # ═══════════════════════════════════════════════════════════════
 elif page == "3D Telemetry":
     hero_section("3D Telemetry Hologram", "Interactive spatial visualization of lap telemetry")
 
     glass_card_start()
     st.subheader("Circuit Velocity Map")
-    
-    # Generate synthetic telemetry data for the structural copy-paste test
-    t = np.linspace(0, 2 * np.pi, 500)
-    x = np.sin(2 * t) * 1000  
-    y = np.cos(t) * 1000
-    z = np.sin(3 * t) * 50    
-    speed = 100 + 150 * np.abs(np.cos(t)) 
-    sample_telemetry = pd.DataFrame({'X': x, 'Y': y, 'Z': z, 'Speed': speed})
-    
-    fig = go.Figure()
 
+    t = np.linspace(0, 2 * np.pi, 500)
+    x = np.sin(2 * t) * 1000
+    y = np.cos(t) * 1000
+    z = np.sin(3 * t) * 50
+    speed = 100 + 150 * np.abs(np.cos(t))
+    sample_telemetry = pd.DataFrame({'X': x, 'Y': y, 'Z': z, 'Speed': speed})
+
+    fig = go.Figure()
     fig.add_trace(go.Scatter3d(
         x=sample_telemetry['X'],
         y=sample_telemetry['Y'],
@@ -366,7 +362,10 @@ elif page == "3D Telemetry":
             size=3,
             color=sample_telemetry['Speed'],
             colorscale='Inferno',
-            colorbar=dict(title="Speed (km/h)", titleside="right", tickfont=dict(color='white'), titlefont=dict(color='white')),
+            colorbar=dict(
+                title=dict(text="Speed (km/h)", font=dict(color='white')),
+                tickfont=dict(color='white')
+            ),
             opacity=0.8
         ),
         line=dict(
@@ -389,9 +388,7 @@ elif page == "3D Telemetry":
             yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, title=''),
             zaxis=dict(showgrid=False, zeroline=False, showticklabels=False, title=''),
             bgcolor='rgba(0,0,0,0)',
-            camera=dict(
-                eye=dict(x=1.2, y=1.2, z=0.6) 
-            )
+            camera=dict(eye=dict(x=1.2, y=1.2, z=0.6))
         )
     )
 
@@ -456,11 +453,11 @@ elif page == "Predict Lap Time":
         glass_card_end()
     with col2:
         glass_card_start()
-        speed_norm = st.slider("Relative speed (1.0 = average)", 0.90, 1.10, 1.0, 0.01)
-        s1_ratio   = st.slider("Sector 1 ratio", 0.20, 0.45, 0.30, 0.01)
-        s2_ratio   = st.slider("Sector 2 ratio", 0.25, 0.50, 0.38, 0.01)
+        speed_norm   = st.slider("Relative speed (1.0 = average)", 0.90, 1.10, 1.0, 0.01)
+        s1_ratio     = st.slider("Sector 1 ratio", 0.20, 0.45, 0.30, 0.01)
+        s2_ratio     = st.slider("Sector 2 ratio", 0.25, 0.50, 0.38, 0.01)
         team_options = sorted(laps['Team'].unique()) if not laps.empty else ["Demo Team"]
-        team       = st.selectbox("Team", team_options)
+        team         = st.selectbox("Team", team_options)
         glass_card_end()
 
     s3_ratio     = max(0.01, 1 - s1_ratio - s2_ratio)
@@ -512,7 +509,7 @@ elif page == "Win Probability":
     st.markdown("<hr>", unsafe_allow_html=True)
     glass_card_start()
     st.subheader("Race podium outlook")
-    
+
     if not qual.empty:
         selected_gp   = st.selectbox("Select race", sorted(qual['GP'].unique()))
         selected_year = st.selectbox("Year", [2022, 2023, 2024], index=0)
