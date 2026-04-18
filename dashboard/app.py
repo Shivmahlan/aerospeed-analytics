@@ -515,7 +515,7 @@ elif page == "Win Probability":
     
     if not qual.empty:
         selected_gp   = st.selectbox("Select race", sorted(qual['GP'].unique()))
-        selected_year = st.selectbox("Year", [2022, 2023, 2024], index=2)
+        selected_year = st.selectbox("Year", [2022, 2023, 2024], index=0)
 
         race_qual = qual[
             (qual['GP'] == selected_gp) &
