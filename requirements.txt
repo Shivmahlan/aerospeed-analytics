@@ -1,11 +1,12 @@
-streamlit
 fastf1
 pandas
 numpy
+matplotlib
+seaborn
 plotly
+streamlit
 scikit-learn
+xgboost
 joblib
 requests
-xgboost
-lightgbm
-catboost
+beautifulsoup4
